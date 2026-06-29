@@ -2,6 +2,7 @@
 #include "core/logger.h"
 #include "core/memory.h"
 #include "core/input.h"
+#include "core/clock.h"
 #include "renderer/vulkan.h"
 #include <GLFW/glfw3.h>
 
@@ -29,8 +30,10 @@ int main()
 
     while (!glfwWindowShouldClose(window))
     {
+        clock_start_timer();
         vulkan_test(angle);
         angle += 0.00004f;
+        clock_frame_sync();
     }
 
     return 0;
