@@ -1,3 +1,4 @@
+#pragma once
 #include "defines.h"
 
 void clock_start_timer();

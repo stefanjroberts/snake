@@ -1,3 +1,4 @@
+#pragma once
 #include <GLFW/glfw3.h>
 
 struct InputState {
@@ -8,3 +9,4 @@ struct InputState {
 };
 
 struct InputState* initialise_input(GLFWwindow *in_window);
+void clear_input();

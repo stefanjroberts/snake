@@ -3,6 +3,7 @@
 #include "core/memory.h"
 #include "core/input.h"
 #include "core/clock.h"
+#include "game/game.h"
 #include "renderer/vulkan.h"
 #include <GLFW/glfw3.h>
 
@@ -22,17 +23,19 @@ int main()
 
     init_vulkan(window);
 
-    struct InputState* input_state  = initialise_input(window);
-
-    
+    struct InputState* input_state  = initialise_input(window); 
 
     f64 angle = 0;
+
+    game_init(input_state);
 
     while (!glfwWindowShouldClose(window))
     {
         clock_start_timer();
         vulkan_test(angle);
-        angle += 0.00004f;
+        angle += 0.04f;
+        game_update();
+        clear_input();
         clock_frame_sync();
     }
 
