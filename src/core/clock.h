@@ -1,2 +1,4 @@
+#include "defines.h"
+
 void clock_start_timer();
-void clock_frame_sync();
+f64 clock_frame_sync();
