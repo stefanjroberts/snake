@@ -12,7 +12,6 @@
 #define platform_ASSERT_DEBUG 0
 #endif
 
-
 // NOTE: Logging Macros
 
 #define PFATAL(message, ...) platform_log(platform_FATAL, message, ##__VA_ARGS__);
@@ -39,16 +38,35 @@
 // NOTE: Assertion Macros
 
 #if platform_ASSERT == 1
-#define PASSERT(expr, msg) if(!(expr)){platform_assert(#expr, msg, __FILE__, __LINE__); __builtin_trap();}  
+#define PASSERT(expr, msg)                                                                                                                           \
+    if (!(expr))                                                                                                                                     \
+    {                                                                                                                                                \
+        platform_assert(#expr, msg, __FILE__, __LINE__);                                                                                             \
+        __builtin_trap();                                                                                                                            \
+    }
 #else
-#define PASSERT(expr) if(expr){}
-#define PASSERT_MSG(expr, msg) if(expr){}
+#define PASSERT(expr)                                                                                                                                \
+    if (expr)                                                                                                                                        \
+    {                                                                                                                                                \
+    }
+#define PASSERT_MSG(expr, msg)                                                                                                                       \
+    if (expr)                                                                                                                                        \
+    {                                                                                                                                                \
+    }
 #endif
 
 #if platform_ASSERT_DEBUG == 1
-#define PASSERT_DBG(expr, msg) if(!(expr)){platform_assert(#expr, msg, __FILE__, __LINE__); __builtin_trap();} 
+#define PASSERT_DBG(expr, msg)                                                                                                                       \
+    if (!(expr))                                                                                                                                     \
+    {                                                                                                                                                \
+        platform_assert(#expr, msg, __FILE__, __LINE__);                                                                                             \
+        __builtin_trap();                                                                                                                            \
+    }
 #else
-#define PASSERT_DBG(expr, msg) if(expr){}
+#define PASSERT_DBG(expr, msg)                                                                                                                       \
+    if (expr)                                                                                                                                        \
+    {                                                                                                                                                \
+    }
 #endif
 
 // NOTE: Logger Functions

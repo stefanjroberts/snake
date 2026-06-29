@@ -1,8 +1,8 @@
 
 #include "memory.h"
 #include "logger.h"
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #if MEMORY_DEBUG_LEVEL >= 1
 #include "logger.h"
@@ -15,8 +15,6 @@ struct MemoryStats
 
 static struct MemoryStats memory_stats; // TODO: Find a suitable solution for static global management
 #endif
-
-
 
 #if MEMORY_DEBUG_LEVEL == 2
 struct DebugMemPrefix
@@ -117,22 +115,29 @@ void platform_free(void *memory, u64 size, enum MemoryTag memory_tag)
     free(memory);
 
 #endif
-
 }
 
 char *open_file(const char *filename, u32 *file_size)
 {
     FILE *file_pointer;
     file_pointer = fopen(filename, "rb");
-    fseek(file_pointer, 0L, SEEK_END);
-    *file_size = ftell(file_pointer);
-    fseek(file_pointer, 0L, SEEK_SET);
+    if (file_pointer)
+    {
+        fseek(file_pointer, 0L, SEEK_END);
+        *file_size = ftell(file_pointer);
+        fseek(file_pointer, 0L, SEEK_SET);
 
-    char *file_data = (char *)platform_alloc(*file_size, MEM_TAG_FILE_ACCESS);
-    fread(file_data, 1, *file_size, file_pointer);
-    fclose(file_pointer);
+        char *file_data = (char *)platform_alloc(*file_size, MEM_TAG_FILE_ACCESS);
+        fread(file_data, 1, *file_size, file_pointer);
+        fclose(file_pointer);
 
-    return (file_data);
+        return (file_data);
+    }
+    else
+    {
+        PERROR("Failed to open file");
+        return 0;
+    }
 }
 
 void close_file(char *file, u32 file_size)

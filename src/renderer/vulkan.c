@@ -18,7 +18,6 @@
 #include "../core/logger.h"
 #include "../core/memory.h"
 
-
 // SECTION: TYPE DEFINITIONS
 
 struct QueueFamilyIndices

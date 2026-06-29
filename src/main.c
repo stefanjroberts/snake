@@ -1,6 +1,7 @@
 #include "core/event.h"
 #include "core/logger.h"
 #include "core/memory.h"
+#include "core/input.h"
 #include "renderer/vulkan.h"
 #include <GLFW/glfw3.h>
 
@@ -20,12 +21,16 @@ int main()
 
     init_vulkan(window);
 
+    struct InputState* input_state  = initialise_input(window);
+
+    
+
     f64 angle = 0;
 
     while (!glfwWindowShouldClose(window))
     {
         vulkan_test(angle);
-        angle += 0.000004f;
+        angle += 0.00004f;
     }
 
     return 0;
