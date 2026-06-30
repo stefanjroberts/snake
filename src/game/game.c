@@ -10,10 +10,20 @@ enum SnakeDirection
     STATIC
 };
 
+struct vec2
+{
+    u32 x;
+    u32 y;
+};
+
 struct GameState
 {
     struct InputState *input;
     enum SnakeDirection snake_direction;
+    struct vec2 snake_segments[100];
+    struct vec2 fruit_location;
+    u32 snake_head_index;
+    u32 snake_length;
 };
 
 static struct GameState game_state;

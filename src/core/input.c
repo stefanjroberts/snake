@@ -6,7 +6,7 @@ static struct InputState input_state;
 static GLFWwindow *window;
 
 // TODO: Is this thread safe?
-//TODO: Turn this into an action queue, mailbox style.
+// TODO: Turn this into an action queue, mailbox style.
 
 void keypress_callback(GLFWwindow *window, int key, int scancode, int action, int mods)
 {
@@ -36,7 +36,7 @@ void keypress_callback(GLFWwindow *window, int key, int scancode, int action, in
     return;
 }
 
-struct InputState* initialise_input(GLFWwindow *in_window)
+struct InputState *initialise_input(GLFWwindow *in_window)
 {
     window = in_window;
 

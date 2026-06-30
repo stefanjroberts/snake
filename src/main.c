@@ -1,8 +1,8 @@
+#include "core/clock.h"
 #include "core/event.h"
+#include "core/input.h"
 #include "core/logger.h"
 #include "core/memory.h"
-#include "core/input.h"
-#include "core/clock.h"
 #include "game/game.h"
 #include "renderer/vulkan.h"
 #include <GLFW/glfw3.h>
@@ -23,7 +23,7 @@ int main()
 
     init_vulkan(window);
 
-    struct InputState* input_state  = initialise_input(window); 
+    struct InputState *input_state = initialise_input(window);
 
     f64 angle = 0;
 
